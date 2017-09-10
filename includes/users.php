@@ -31,8 +31,9 @@ class User extends DatabaseObject
     public $image_temp;
 
     public static function username_exists($username) {
-        $existing_user = User::count_by_column('username',$username);
-        if($existing_user > 0) {
+        $query = "SELECT * FROM users WHERE username = $username";
+        $existing_user = User::find_by_sql($query);
+        if(count($existing_user) > 0) {
             return true;
         } else {
             return false;
@@ -40,12 +41,12 @@ class User extends DatabaseObject
     }
 
     public static function email_exists($email) {
-        $existing_user = User::count_by_column('email',$email);
-        if($existing_user > 0) {
+        $query = "SELECT * FROM users WHERE email = $email";
+        $existing_user = User::find_by_sql($query);
+        if(count($existing_user) > 0) {
             return true;
         } else {
             return false;
         }
     }
-
 }

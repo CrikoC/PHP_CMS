@@ -24,19 +24,15 @@ class Comment extends DatabaseObject
     public $date;
 
     public static function find_by_post($id="") {
-        global $database;
         $sql = "SELECT * FROM comments ";
-        $sql .= " WHERE post_id='" .$database->escape_value($id)."' ";
+        $sql .= "WHERE post_id = $id ";
         $sql .= "AND status = 'approved'";
-
         return static::find_by_sql($sql);
     }
 
     public static function find_by_post_admin($id="") {
-        global $database;
         $sql = "SELECT * FROM comments ";
-        $sql .= " WHERE post_id='" .$database->escape_value($id)."'";
-
+        $sql .= " WHERE post_id = $id";
         return static::find_by_sql($sql);
     }
 }

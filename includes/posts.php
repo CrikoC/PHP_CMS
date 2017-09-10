@@ -1,6 +1,4 @@
 <?php
-require_once(LIB_PATH.DS.'database.php');
-
 class Post extends DatabaseObject
 {
     protected static $table_name = 'posts';
@@ -31,18 +29,14 @@ class Post extends DatabaseObject
     public $image_temp;
 
     public static function find_published(){
-        $sql = "SELECT * FROM posts ";
-        $sql .= " WHERE status='published'";
-
-        return static::find_by_sql($sql);
+        $query = Post::find_by_column('status','"published"');
+        return static::find_by_sql($query);
     }
 
     public static function find_by_category($id="") {
-        global $database;
-        $sql = "SELECT * FROM posts ";
-        $sql .= " WHERE category_id='" .$database->escape_value($id)."' ";
-        $sql .= "AND status='published'";
-
-        return static::find_by_sql($sql);
+        $query = "SELECT * FROM posts";
+        $query .= " WHERE category_id = $id";
+        $query .= "AND status = 'published'";
+        return static::find_by_sql($query);
     }
 }
