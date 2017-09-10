@@ -21,7 +21,7 @@
         </div>
         <!-- /.row -->
         <div class="row">
-            <?php $post_count = Post::count_all(); ?>
+            <?php $post_count = count(Post::find_all()); ?>
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <?php $comment_count = Comment::count_all(); ?>
+                <?php $comment_count = count(Comment::find_all()); ?>
                 <div class="panel panel-green">
                     <div class="panel-heading">
                         <div class="row">
@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <?php $user_count = User::count_all(); ?>
+                <?php $user_count = count(User::find_all()); ?>
                 <div class="panel panel-yellow">
                     <div class="panel-heading">
                         <div class="row">
@@ -91,7 +91,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <?php $category_count = Category::count_all(); ?>
+                <?php $category_count = count(Category::find_all()); ?>
                 <div class="panel panel-red">
                     <div class="panel-heading">
                         <div class="row">
@@ -115,11 +115,11 @@
             </div>
         </div>
         <?php
-        $published_post_count = Post::count_by_column('status','published');
-        $post_draft_count = Post::count_by_column('status','draft');
-        $comment_pending_count = Comment::count_by_column('status','pending');
-        $subscriber_count = User::count_by_column('role','subscriber');
-        $user_pending_count = User::count_by_column('status','pending');
+        $published_post_count = count(Post::find_by_column('status','published'));
+        $post_draft_count = count(Post::find_by_column('status','draft'));
+        $comment_pending_count = count(Comment::find_by_column('status','pending'));
+        $subscriber_count = count(User::find_by_column('role','subscriber'));
+        $user_pending_count = count(User::find_by_column('status','pending'));
         ?>
         <!-- /.row -->
         <div class="row">

@@ -36,7 +36,7 @@
             if(isset($_GET['delete'])) {
                 $post = Post::find_by_id($_GET['delete']);
                 if(!$post->delete()) {
-                    die("<div class='alert alert-danger'>Deleting failed ". mysqli_error($database->get_connection()) ."</div>");
+                    $_SESSION['message'] = "<div class='alert alert-danger'>Deleting failed</div>";
                 } else {
                     $_SESSION['message'] = "<div class='alert alert-success'>Post Deleted!</div>";
                     redirect_to("posts.php");
@@ -46,7 +46,7 @@
                 $post = Post::find_by_id($_GET['reset']);
                 $post->views = 0;
                 if(!$post->update()) {
-                    die("<div class='alert alert-danger'>Reset failed ". mysqli_error($database->get_connection()) ."</div>");
+                    $_SESSION['message'] = "<div class='alert alert-danger'>Reset failed</div>";
                 } else {
                     $_SESSION['message'] = "<div class='alert alert-success'>Post's views have be reset!</div>";
                     redirect_to("posts.php");

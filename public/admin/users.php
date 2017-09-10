@@ -38,7 +38,7 @@
                     if($session->is_admin_logged_in()) {
                         $user = User::find_by_id($_GET['delete']);
                         if(!$user->delete()) {
-                            die("<div class='alert alert-danger'>Deleting failed ". mysqli_error($database->get_connection()) ."</div>");
+                            $_SESSION['message'] = "<div class='alert alert-danger'>Deleting failed</div>";
                         } else {
                             $_SESSION['message'] = "<div class='alert alert-success'>User Deleted!</div>";
                             redirect_to("users.php");
@@ -52,7 +52,7 @@
                         $user->status = 'approved';
 
                         if (!$user->update()) {
-                            $_SESSION['message'] = die("<div class='alert alert-danger'>Updating failed " . mysqli_error($database->get_connection()) . "</div>");
+                            $_SESSION['message'] = "<div class='alert alert-danger'>Updating failed</div>";
                         } else {
                             $_SESSION['message'] = "<div class='alert alert-success'>User approved!</div>";
                             redirect_to("users.php");
@@ -65,7 +65,7 @@
                         $user->status = 'dismissed';
 
                         if (!$user->update()) {
-                            $_SESSION['message'] = die("<div class='alert alert-danger'>Updating failed " . mysqli_error($database->get_connection()) . "</div>");
+                            $_SESSION['message'] = "<div class='alert alert-danger'>Updating failed</div>";
                         } else {
                             $_SESSION['message'] = "<div class='alert alert-success'>User dismissed!</div>";
                             redirect_to("users.php");

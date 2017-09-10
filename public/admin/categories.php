@@ -13,7 +13,7 @@ if(isset($_POST['create'])) {
         $message = "<div class='alert alert-danger'>Enter a name for the category.</div>";
     } else {
         if(!$category->create()) {
-            $_SESSION['message'] = die("<div class='alert alert-danger'>Adding failed ". mysqli_error($database->get_connection()) ."</div>");
+            $_SESSION['message'] = "<div class='alert alert-danger'>Adding failed </div>";
         } else {
             $_SESSION['message'] = "<div class='alert alert-success'>Category created</div>";
             redirect_to("categories.php");
@@ -27,7 +27,7 @@ if(isset($_GET['delete'])) {
 
         $category = Category::find_by_id($id);
         if (!$category->delete()) {
-            $_SESSION['message'] = die("<div class='alert alert-danger'>Deleting failed " . mysqli_error($database->get_connection()) . "</div>");
+            $_SESSION['message'] = "<div class='alert alert-danger'>Deleting failed</div>";
         } else {
             $_SESSION['message'] = "<div class='alert alert-success'>Category Deleted</div>";
             redirect_to("categories.php");

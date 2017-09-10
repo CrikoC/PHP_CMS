@@ -1,6 +1,6 @@
 <?php require_once("../../includes/initialize.php"); ?>
 <?php if (!$session->is_admin_logged_in()) { redirect_to("../index.php"); } ?>
-<?php $user = User::find_by_id($session->user_id) ?>
+<?php $user = User::find_by_id($session->user_id); ?>
 <?php admin_section('header.php'); ?>
 <?php admin_section('navigation.php'); ?>
     <div id="page-wrapper">
@@ -45,7 +45,7 @@
                         }
 
                         if (!$user->update()) {
-                            die("<div class='alert alert-danger'>Updating failed " . mysqli_error($database->get_connection()) . "</div>");
+                            $_SESSION['session'] = "<div class='alert alert-danger'>Updating failed</div>";
                         } else {
                             $_SESSION['session'] = "<div class='alert alert-success'>User Updated!</div>";
                             redirect_to("profile.php");
@@ -60,7 +60,7 @@
                             //Encrypt pass
                             $user->password = password_hash($_POST['password'], PASSWORD_BCRYPT, ['cost'=>10]);
                             if (!$user->update()) {
-                                die("<div class='alert alert-danger'>Updating password failed " . mysqli_error($database->get_connection()) . "</div>");
+                                $_SESSION['message'] = "<div class='alert alert-danger'>Updating password failed</div>";
                             } else {
                                 $_SESSION['message'] = "<div class='alert alert-success'>User password Updated!</div>";
                                 redirect_to("profile.php");

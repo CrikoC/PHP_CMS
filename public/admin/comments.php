@@ -50,7 +50,7 @@
                 if(isset($_GET['delete'])) {
                     $comment = Comment::find_by_id($_GET['delete']);
                     if(!$comment->delete()) {
-                        die("<div class='alert alert-danger'>Deleting failed ". mysqli_error($database->get_connection()) ."</div>");
+                        $_SESSION['message'] = "<div class='alert alert-danger'>Deleting failed</div>";
                     } else {
                         $_SESSION['message'] = "<div class='alert alert-success'>Comment deleted!</div>";
                         redirect();
@@ -61,7 +61,7 @@
                     $comment->status = 'approved';
 
                     if(!$comment->update()) {
-                        die("<div class='alert alert-danger'>Updating failed ". mysqli_error($database->get_connection()) ."</div>");
+                        $_SESSION['message'] = "<div class='alert alert-danger'>Updating failed</div>";
                     } else {
                         $_SESSION['message'] = "<div class='alert alert-success'>Comment approved!</div>";
                         redirect();
@@ -72,7 +72,7 @@
                     $comment->status = 'dismissed';
 
                     if(!$comment->update()) {
-                        die("<div class='alert alert-danger'>Updating failed ". mysqli_error($database->get_connection()) ."</div>");
+                        $_SESSION['message'] = "<div class='alert alert-danger'>Updating failed</div>";
                     } else {
                         $_SESSION['message'] = "<div class='alert alert-success'>Comment dismissed!</div>";
                         redirect();
