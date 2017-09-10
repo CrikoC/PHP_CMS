@@ -26,10 +26,10 @@
             echo "<div class='alert alert-danger'>Enter a comment</div>";
         } else {
             if(!$comment->create()) {
-                $_SESSION['message'] = die("<div class='alert alert-danger'>Adding failed ". mysqli_error($database) ."</div>");
+                $_SESSION['message'] = "<div class='alert alert-danger'>Adding failed</div>";
             } else {
                 $_SESSION['message'] = "<div class='alert alert-success'>Comment submitted and pending approval</div>";
-                redirect_to("post.php?id=$id");
+                redirect_to("/cms/public/post/$id");
             }
         }
     }
@@ -61,18 +61,18 @@
             <hr>
             <p><?php echo $post->content; ?></p>
             <p class="text-right">
-                by <a href="/cms/public/author/<?php echo $post->author; ?>"><?php echo $post->author; ?></a>. <span class="glyphicon glyphicon-time"></span> <?php echo $post->date; ?>
+                by: <a href="/cms/public/author.php?name=<?php echo $post->author; ?>"><?php echo $post->author; ?></a>. <span class="glyphicon glyphicon-time"></span> <?php echo $post->date; ?>
             </p>
             <hr>
             <!-- Pager -->
-            <ul class="pager">
-                <li class="previous">
-                    <a href="#">&larr; Older</a>
-                </li>
-                <li class="next">
-                    <a href="#">Newer &rarr;</a>
-                </li>
-            </ul>
+<!--            <ul class="pager">-->
+<!--                <li class="previous">-->
+<!--                    <a href="#">&larr; Older</a>-->
+<!--                </li>-->
+<!--                <li class="next">-->
+<!--                    <a href="#">Newer &rarr;</a>-->
+<!--                </li>-->
+<!--            </ul>-->
 
             <!-- Blog Comments -->
 
@@ -101,7 +101,7 @@
             <div class="media">
                 <a class="pull-left" href="#">
                     <?php
-                        $author = User::find_by_column('username',$comment->author);
+                        $author = User::find_single_by_column('username',$comment->author);
                     ?>
                     <img width="100" class="media-object" src="/cms/public/includes/images/<?php echo $author->image; ?>" alt="<?php echo $comment->author; ?>">
                 </a>

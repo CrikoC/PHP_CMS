@@ -2,7 +2,7 @@
 <?php section('header.php'); ?>
 <?php section('navigation.php'); ?>
 <?php if(!isset($_GET['name'])) { redirect_to('index.php'); } ?>
-<?php $author = User::find_by_column('username',$_GET['name']); ?>
+<?php $author = User::find_single_by_column('username',$_GET['name']); ?>
     <!-- Page Content -->
     <div class="container">
     <div class="row">

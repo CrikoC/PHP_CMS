@@ -14,12 +14,15 @@
             </h1>
             <!-- Blog Posts -->
             <?php
+            global $db;
             // 1. the current page number ($current_page)
             $page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
             // 2. records per page ($per_page)
-            $per_page = 3;
+            $per_page = 5;
             // 3. total record count ($total_count)
-            $total_count = Post::count_by_column('status','published');
+            $total_posts = Post::find_by_column('status','"published"');
+            $total_count = count($total_posts);
+            // 4. Pagination
             $pagination = new Pagination($page, $per_page, $total_count);
             // Instead of finding all records, just find the records
             // for this page
@@ -60,7 +63,7 @@
                     </div>
                 </div>
                 <p class="text-right">
-                    by <a href="/cms/public/author/<?php echo $post->author; ?>"><?php echo $post->author; ?></a>. <span class="glyphicon glyphicon-time"></span> <?php echo $post->date; ?>
+                    by <a href="/cms/public/author.php?name=<?php echo $post->author; ?>"><?php echo $post->author; ?></a>. <span class="glyphicon glyphicon-time"></span> <?php echo $post->date; ?>
                 </p>
                 <hr>
             <?php endforeach; ?>
@@ -88,9 +91,7 @@
                         echo $pagination->next_page();
                         echo "'>Next &raquo;</a></li> ";
                     }
-
                 }
-
                 ?>
             </ul>
         </div>
