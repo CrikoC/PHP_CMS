@@ -1,5 +1,5 @@
 # PHP_CMS
-An oop php content management system 
+An oop php content management system, using PDO with prepared statements 
 
 ***
 
