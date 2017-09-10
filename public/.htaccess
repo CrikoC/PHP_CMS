@@ -1,0 +1,8 @@
+RewriteEngine on
+
+#Clean up URLs of public page
+RewriteRule ^(index|contact|login|register)$ $1.php [NC,L]
+RewriteRule ^category/(\d+)$ category.php?id=$1 [NC,L]
+RewriteRule ^post/(\d+)$ post.php?id=$1 [NC,L]
+#RewriteRule ^author/(\d+)$ author.php?name=$1 [NC,L]
+#RewriteRule ^forgot/(\d+)$ forgot.php?forgot=$1 [NC,L]
