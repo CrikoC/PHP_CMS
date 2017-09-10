@@ -12,7 +12,7 @@ An oop php content management system, using PDO with prepared statements
 
 ## Setup
 
-1. create a database. Name it "cms" or give whatever name you like and also change it in the "includes/config.php" file.
+1. create a database. Name it "cms" or give whatever name you like and also change it in the "includes/database.php" file.
 
 2. Import the provided database (it contains an administrator account that you should use to log in)
 
