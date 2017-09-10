@@ -6,7 +6,7 @@ $time = time();
 $time_out_in_seconds = 60;
 $time_out = $time - $time_out_in_seconds;
 
-$count = UserOnline::count_by_column('session',$session_id);
+$count = count(UserOnline::find_by_column('session',$session_id));
 
 if($count == 0) {
     $user_online = new UserOnline();
@@ -14,11 +14,11 @@ if($count == 0) {
     $user_online->time = $time;
     $user_online->create();
 } else {
-    $user_online = UserOnline::find_by_column('session',$session_id);
+    $user_online = UserOnline::find_single_by_column('session',$session_id);
     $user_online->time = $time;
     $user_online->update();
 }
-echo $users_online_count = UserOnline::count_by_column('time',$time_out);
+echo $users_online_count = count(UserOnline::find_by_column('time',$time_out));
 
 
 
