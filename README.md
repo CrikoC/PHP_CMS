@@ -28,4 +28,4 @@ You can edit this account to your own liking or create a new one.
 
 ***
 
-Hope you like it. Leave your feedback and recomendations!
+Hope you like it. Leave your feedback and recommendations!
