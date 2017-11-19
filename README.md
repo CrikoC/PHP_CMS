@@ -4,7 +4,7 @@ An oop php content management system, using PDO with prepared statements
 ***
 
 ## Requirements
-1.PHP - Apache = MySQL server (XAMPP WAMP MAMP)
+1. PHP - Apache - MySQL server (XAMPP WAMP MAMP)
 
 2. composer
 
