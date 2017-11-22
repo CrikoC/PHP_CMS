@@ -3,7 +3,7 @@
 defined("DS") ? null : define("DS", DIRECTORY_SEPARATOR);
 
 //Main site
-defined("SITE_ROOT") ? null : define("SITE_ROOT", $_SERVER['DOCUMENT_ROOT'].DS."cms");
+defined("SITE_ROOT") ? null : define("SITE_ROOT", $_SERVER['DOCUMENT_ROOT'].DS."PHP_CMS");
 
 //Library path that contains all classes
 defined("LIB_PATH") ? null : define("LIB_PATH", SITE_ROOT.DS."includes");
